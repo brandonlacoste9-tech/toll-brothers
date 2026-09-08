@@ -1,26 +1,62 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-ink: #161412;
+  --color-slate: #3d3832;
+  --color-mute: #6f675d;
+  --color-line: #e4dcd0;
+  --color-cream: #f4efe7;
+  --color-paper: #faf7f2;
+  --color-gold: #b08d57;
+  --color-bronze: #8c6a3d;
+  --color-white: #ffffff;
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-outfit);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3,
+.serif {
+  font-family: var(--font-serif), Georgia, serif;
+  letter-spacing: -0.03em;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-gold) 35%, white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero-video {
+    display: none;
+  }
+}
+
+.grain {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.room-hot:hover,
+.room-hot[data-active="true"] {
+  fill: color-mix(in srgb, var(--color-gold) 28%, white);
+  stroke: var(--color-gold);
 }
